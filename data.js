@@ -1,0 +1,107 @@
+// All records are fictional demo data. IDs connect records across the dashboard.
+const leads = [
+  { id: 1, name: "Ravi Kumar", source: "Website", status: "Qualified", date: "2026-10-17" },
+  { id: 2, name: "Priya Sharma", source: "Google Ads", status: "Converted", date: "2026-10-17" },
+  { id: 3, name: "Arun Kumar", source: "Referral", status: "Unqualified", date: "2026-10-16" },
+  { id: 4, name: "Sneha Reddy", source: "Google Ads", status: "Qualified", date: "2026-10-16" },
+  { id: 5, name: "Vikram Raj", source: "Website", status: "Converted", date: "2026-10-15" },
+  { id: 6, name: "Meena Devi", source: "Referral", status: "Qualified", date: "2026-10-14" },
+  { id: 7, name: "Karthik S", source: "Google Ads", status: "Unqualified", date: "2026-10-13" },
+  { id: 8, name: "Divya Nair", source: "Website", status: "Converted", date: "2026-10-12" },
+  { id: 9, name: "Ajay Kumar", source: "Referral", status: "Converted", date: "2026-10-11" },
+  { id: 10, name: "Nisha Rao", source: "Google Ads", status: "Qualified", date: "2026-10-10" },
+  { id: 11, name: "Manoj Das", source: "Website", status: "Unqualified", date: "2026-10-09" },
+  { id: 12, name: "Harish B", source: "Referral", status: "Qualified", date: "2026-10-08" },
+  { id: 13, name: "Pooja S", source: "Google Ads", status: "Converted", date: "2026-10-07" },
+  { id: 14, name: "Sanjay M", source: "Website", status: "Qualified", date: "2026-10-05" },
+  { id: 15, name: "Anitha K", source: "Referral", status: "Unqualified", date: "2026-10-03" },
+  { id: 16, name: "Rahul P", source: "Google Ads", status: "Qualified", date: "2026-09-30" },
+  { id: 17, name: "Keerthi V", source: "Website", status: "Converted", date: "2026-09-25" },
+  { id: 18, name: "Suresh G", source: "Referral", status: "Unqualified", date: "2026-09-20" },
+  { id: 19, name: "Deepa R", source: "Google Ads", status: "Qualified", date: "2026-09-18" },
+  { id: 20, name: "Mohan T", source: "Website", status: "Unqualified", date: "2026-09-15" },
+  { id: 21, name: "Anand Joseph", source: "Just Dial", status: "Qualified", date: "2026-10-02" },
+  { id: 22, name: "Farah Khan", source: "Website", status: "Converted", date: "2026-09-28" },
+  { id: 23, name: "Lokesh M", source: "Google Ads", status: "Qualified", date: "2026-09-12" },
+  { id: 24, name: "Swetha R", source: "Referral", status: "Unqualified", date: "2026-09-08" },
+  { id: 25, name: "Dinesh P", source: "Just Dial", status: "Converted", date: "2026-08-28" },
+  { id: 26, name: "Maya Thomas", source: "Website", status: "Qualified", date: "2026-08-22" },
+  { id: 27, name: "Kiran S", source: "Google Ads", status: "Converted", date: "2026-08-16" },
+  { id: 28, name: "Joseph Mathew", source: "Referral", status: "Qualified", date: "2026-08-11" },
+  { id: 29, name: "Lavanya K", source: "Website", status: "Unqualified", date: "2026-08-05" },
+  { id: 30, name: "Sathish V", source: "Google Ads", status: "Qualified", date: "2026-07-29" }
+];
+
+const quotations = [
+  { id: 101, leadId: 1, service: "Web Development", amount: 45000, status: "Sent", date: "2026-10-17" },
+  { id: 102, leadId: 2, service: "Digital Marketing", amount: 25000, status: "Accepted", date: "2026-10-17" },
+  { id: 103, leadId: 1, service: "SEO Services", amount: 12000, status: "Draft", date: "2026-10-16" },
+  { id: 104, leadId: 4, service: "Web Development", amount: 60000, status: "Sent", date: "2026-10-16" },
+  { id: 105, leadId: 5, service: "Cloud Services", amount: 35000, status: "Accepted", date: "2026-10-15" },
+  { id: 106, leadId: 6, service: "IT Consulting", amount: 18000, status: "Rejected", date: "2026-10-14" },
+  { id: 107, leadId: 3, service: "Digital Marketing", amount: 22000, status: "Sent", date: "2026-10-14" },
+  { id: 108, leadId: 8, service: "SEO Services", amount: 15000, status: "Accepted", date: "2026-10-12" },
+  { id: 109, leadId: 9, service: "Cloud Services", amount: 40000, status: "Accepted", date: "2026-10-11" },
+  { id: 110, leadId: 10, service: "IT Consulting", amount: 28000, status: "Sent", date: "2026-10-10" },
+  { id: 111, leadId: 2, service: "Web Development", amount: 52000, status: "Accepted", date: "2026-10-09" },
+  { id: 112, leadId: 12, service: "Digital Marketing", amount: 20000, status: "Rejected", date: "2026-10-08" },
+  { id: 113, leadId: 13, service: "Cloud Services", amount: 32000, status: "Accepted", date: "2026-10-07" },
+  { id: 114, leadId: 14, service: "SEO Services", amount: 14000, status: "Sent", date: "2026-10-05" },
+  { id: 115, leadId: 7, service: "IT Consulting", amount: 24000, status: "Draft", date: "2026-10-04" },
+  { id: 116, leadId: 16, service: "Web Development", amount: 48000, status: "Sent", date: "2026-09-30" },
+  { id: 117, leadId: 17, service: "Digital Marketing", amount: 26000, status: "Accepted", date: "2026-09-25" },
+  { id: 118, leadId: 18, service: "Cloud Services", amount: 38000, status: "Rejected", date: "2026-09-20" },
+  { id: 119, leadId: 19, service: "SEO Services", amount: 16000, status: "Sent", date: "2026-09-18" },
+  { id: 120, leadId: 20, service: "IT Consulting", amount: 30000, status: "Draft", date: "2026-09-15" },
+  { id: 121, leadId: 1, service: "Cloud Services", amount: 42000, status: "Sent", date: "2026-10-17" },
+  { id: 122, leadId: 5, service: "IT Consulting", amount: 19000, status: "Accepted", date: "2026-10-13" },
+  { id: 123, leadId: 22, service: "Web Development", amount: 55000, status: "Accepted", date: "2026-09-28" },
+  { id: 124, leadId: 25, service: "Cloud Services", amount: 41000, status: "Accepted", date: "2026-08-28" },
+  { id: 125, leadId: 27, service: "Digital Marketing", amount: 27000, status: "Accepted", date: "2026-08-16" },
+  { id: 126, leadId: 30, service: "IT Consulting", amount: 33000, status: "Sent", date: "2026-07-29" }
+];
+
+const deals = [
+  { id: 201, leadId: 2, quoteId: 102, service: "Digital Marketing", value: 25000, priority: "High", status: "In Progress", date: "2026-10-17" },
+  { id: 202, leadId: 5, quoteId: 105, service: "Cloud Services", value: 35000, priority: "Medium", status: "Completed", date: "2026-10-15" },
+  { id: 203, leadId: 8, quoteId: 108, service: "SEO Services", value: 15000, priority: "High", status: "In Progress", date: "2026-10-12" },
+  { id: 204, leadId: 9, quoteId: 109, service: "Cloud Services", value: 40000, priority: "High", status: "In Progress", date: "2026-10-11" },
+  { id: 205, leadId: 2, quoteId: 111, service: "Web Development", value: 52000, priority: "Medium", status: "Completed", date: "2026-10-09" },
+  { id: 206, leadId: 13, quoteId: 113, service: "Cloud Services", value: 32000, priority: "High", status: "In Progress", date: "2026-10-07" },
+  { id: 207, leadId: 17, quoteId: 117, service: "Digital Marketing", value: 26000, priority: "Low", status: "Completed", date: "2026-09-25" },
+  { id: 208, leadId: 22, quoteId: 123, service: "Web Development", value: 55000, priority: "High", status: "Completed", date: "2026-09-29" },
+  { id: 209, leadId: 25, quoteId: 124, service: "Cloud Services", value: 41000, priority: "Medium", status: "In Progress", date: "2026-08-29" },
+  { id: 210, leadId: 27, quoteId: 125, service: "Digital Marketing", value: 27000, priority: "Low", status: "Completed", date: "2026-08-17" }
+];
+
+const orders = [
+  { id: 301, dealId: 201, leadId: 2, service: "Digital Marketing", value: 15000, status: "In Progress", date: "2026-10-17" },
+  { id: 302, dealId: 201, leadId: 2, service: "Digital Marketing", value: 10000, status: "Pending", date: "2026-10-17" },
+  { id: 303, dealId: 202, leadId: 5, service: "Cloud Services", value: 20000, status: "Completed", date: "2026-10-15" },
+  { id: 304, dealId: 202, leadId: 5, service: "Cloud Services", value: 15000, status: "Completed", date: "2026-10-15" },
+  { id: 305, dealId: 203, leadId: 8, service: "SEO Services", value: 15000, status: "In Progress", date: "2026-10-12" },
+  { id: 306, dealId: 204, leadId: 9, service: "Cloud Services", value: 25000, status: "In Progress", date: "2026-10-11" },
+  { id: 307, dealId: 204, leadId: 9, service: "Cloud Services", value: 15000, status: "Pending", date: "2026-10-12" },
+  { id: 308, dealId: 205, leadId: 2, service: "Web Development", value: 52000, status: "Completed", date: "2026-10-09" },
+  { id: 309, dealId: 206, leadId: 13, service: "Cloud Services", value: 32000, status: "On Hold", date: "2026-10-07" },
+  { id: 310, dealId: 207, leadId: 17, service: "Digital Marketing", value: 26000, status: "Completed", date: "2026-09-25" },
+  { id: 311, dealId: 208, leadId: 22, service: "Web Development", value: 30000, status: "Completed", date: "2026-09-29" },
+  { id: 312, dealId: 208, leadId: 22, service: "Web Development", value: 25000, status: "Completed", date: "2026-09-30" },
+  { id: 313, dealId: 209, leadId: 25, service: "Cloud Services", value: 41000, status: "In Progress", date: "2026-08-29" },
+  { id: 314, dealId: 210, leadId: 27, service: "Digital Marketing", value: 27000, status: "Completed", date: "2026-08-17" }
+];
+
+const payments = [
+  { id: 401, orderId: 301, dealId: 201, amount: 10000, method: "Bank Transfer", status: "Received", date: "2026-10-17" },
+  { id: 402, orderId: 303, dealId: 202, amount: 20000, method: "UPI", status: "Received", date: "2026-10-16" },
+  { id: 403, orderId: 304, dealId: 202, amount: 15000, method: "Bank Transfer", status: "Received", date: "2026-10-15" },
+  { id: 404, orderId: 305, dealId: 203, amount: 5000, method: "UPI", status: "Received", date: "2026-10-14" },
+  { id: 405, orderId: 306, dealId: 204, amount: 12000, method: "Card", status: "Received", date: "2026-10-13" },
+  { id: 406, orderId: 308, dealId: 205, amount: 52000, method: "Bank Transfer", status: "Received", date: "2026-10-10" },
+  { id: 407, orderId: 309, dealId: 206, amount: 12000, method: "UPI", status: "Received", date: "2026-10-08" },
+  { id: 408, orderId: 310, dealId: 207, amount: 26000, method: "Card", status: "Received", date: "2026-09-27" },
+  { id: 409, orderId: 312, dealId: 208, amount: 30000, method: "Bank Transfer", status: "Received", date: "2026-09-30" },
+  { id: 410, orderId: 313, dealId: 209, amount: 15000, method: "UPI", status: "Received", date: "2026-08-30" },
+  { id: 411, orderId: 314, dealId: 210, amount: 27000, method: "Bank Transfer", status: "Received", date: "2026-08-18" },
+  { id: 412, orderId: 302, dealId: 201, amount: 5000, method: "UPI", status: "Pending", date: "2026-10-18" }
+];
