@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Performance & Revenue Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">B</span><span>BizAnalytics</span></div>
+    <nav>
+      <a href="#overview" class="active">▦ <span>Overview</span></a>
+      <a href="#executive">✦ <span>Executive Summary</span></a>
+      <a href="#leads">♙ <span>Lead Analytics</span></a>
+      <a href="#quotations">▤ <span>Quotations</span></a>
+      <a href="#revenue">↗ <span>Deals & Revenue</span></a>
+      <a href="#orders">▣ <span>Orders & Payments</span></a>
+      <a href="#activity">◷ <span>Recent Activity</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="status-dot"></span> Demo environment<br><small>Sample data only</small></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar" id="overview">
+      <div>
+        <p class="eyebrow">BUSINESS INTELLIGENCE</p>
+        <h1>Business Performance & Revenue Analytics</h1>
+        <p class="subtitle">Track leads, quotations, deals, orders and revenue in one place.</p>
+      </div>
+      <div class="top-actions">
+        <span class="demo-chip"><span class="status-dot"></span> Sample data</span>
+        <div class="date-controls">
+          <select id="dateFilter" aria-label="Date range">
+            <option value="today">Today</option>
+            <option value="7" selected>Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="custom">Custom Range</option>
+          </select>
+          <input type="date" id="startDate" aria-label="Start date" hidden>
+          <input type="date" id="endDate" aria-label="End date" hidden>
+        </div>
+        <button class="btn btn-primary" id="exportBtn">⇩ Export CSV</button>
+      </div>
+    </header>
+
+
+    <section class="executive-section" id="executive">
+      <div class="section-heading"><div><p class="eyebrow">EXECUTIVE SUMMARY</p><h2>Performance at a glance</h2><p>Key outcomes for the selected date range, with decision-ready observations.</p></div><span class="section-icon blue">✦</span></div>
+      <div class="executive-kpis">
+        <article class="card executive-kpi"><div class="kpi-label">Deal pipeline <span class="mini-icon purple">₹</span></div><div class="kpi-value" id="execPipeline">₹0</div><div class="kpi-foot">Value of deals created in range</div></article>
+        <article class="card executive-kpi"><div class="kpi-label">Cash collected <span class="mini-icon green">↗</span></div><div class="kpi-value" id="execCollected">₹0</div><div class="kpi-foot" id="execCollectionFoot">Payments received in range</div></article>
+        <article class="card executive-kpi"><div class="kpi-label">Lead conversion <span class="mini-icon blue">%</span></div><div class="kpi-value" id="execConversion">0%</div><div class="kpi-foot">Converted leads / leads created</div></article>
+        <article class="card executive-kpi"><div class="kpi-label">Average deal size <span class="mini-icon cyan">◎</span></div><div class="kpi-value" id="execAverage">₹0</div><div class="kpi-foot">Average value per deal</div></article>
+      </div>
+      <div class="executive-grid">
+        <article class="card insight-card"><div class="card-heading"><div><h3>Business insights</h3><p>Rule-based observations from the selected data</p></div><span class="mini-icon purple">✦</span></div><div id="insightList" class="insight-list" aria-live="polite"><p class="muted">Insights will appear when data loads.</p></div></article>
+        <article class="card forecast-card"><div class="card-heading"><div><h3>Revenue outlook</h3><p>Illustrative 7-day forecast based on recent collections</p></div><span class="forecast-tag">DEMO FORECAST</span></div><div class="forecast-summary"><div><span class="muted">Projected next 7 days</span><strong id="forecastValue">₹0</strong></div><div><span class="muted">Recent daily average</span><strong id="forecastAverage">₹0</strong></div></div><div class="chart-wrap forecast-chart"><canvas id="forecastChart"></canvas></div><p class="forecast-disclaimer">Estimate only: a simple linear trend over daily demo payment collections. Not a prediction from a trained model or live company data.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="leads">
+      <div class="section-heading"><div><h2>Lead Analytics</h2><p>Lead quality, sources and conversion performance</p></div><span class="section-icon blue">♙</span></div>
+      <div class="kpi-grid five">
+        <article class="card kpi"><div class="kpi-label">Total Leads <span class="mini-icon blue">♙</span></div><div class="kpi-value" id="totalLeads">0</div><div class="kpi-foot" id="leadsChange">vs previous period</div></article>
+        <article class="card kpi"><div class="kpi-label">Qualified Leads <span class="mini-icon green">✓</span></div><div class="kpi-value" id="qualifiedLeads">0</div><div class="kpi-foot" id="qualifiedChange">Qualified prospects</div></article>
+        <article class="card kpi"><div class="kpi-label">Converted Leads <span class="mini-icon purple">↗</span></div><div class="kpi-value" id="convertedLeads">0</div><div class="kpi-foot" id="convertedChange">Successful conversions</div></article>
+        <article class="card kpi"><div class="kpi-label">Unqualified Leads <span class="mini-icon red">×</span></div><div class="kpi-value" id="unqualifiedLeads">0</div><div class="kpi-foot">Unqualified prospects</div></article>
+        <article class="card kpi"><div class="kpi-label">Conversion Rate <span class="mini-icon cyan">%</span></div><div class="kpi-value" id="conversionRate">0%</div><div class="kpi-foot">Converted / total leads</div></article>
+      </div>
+      <div class="grid-two">
+        <article class="card"><div class="card-heading"><div><h3>Daily Lead Trend</h3><p>New, qualified and converted leads</p></div></div><div class="chart-wrap"><canvas id="leadChart"></canvas></div></article>
+        <article class="card"><div class="card-heading"><div><h3>Lead Sources</h3><p>Where leads are coming from</p></div></div><div class="chart-wrap medium"><canvas id="sourceChart"></canvas></div></article>
+      </div>
+      <article class="card table-card">
+        <div class="card-heading"><div><h3>Lead Details</h3><p>Select a record to see its quotations and deals</p></div><input class="search" id="leadSearch" placeholder="Search leads..." aria-label="Search leads"></div>
+        <div class="table-scroll"><table><thead><tr><th>Lead</th><th>Source</th><th>Status</th><th>Date</th><th>Quotations</th><th>Deals</th></tr></thead><tbody id="leadTable"></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="quotations">
+      <div class="section-heading"><div><h2>Quotation Analytics</h2><p>Quotation volume, value and acceptance</p></div><span class="section-icon purple">▤</span></div>
+      <div class="kpi-grid four">
+        <article class="card kpi"><div class="kpi-label">Quotations Created <span class="mini-icon blue">▤</span></div><div class="kpi-value" id="totalQuotes">0</div><div class="kpi-foot" id="quotesChange">In selected period</div></article>
+        <article class="card kpi"><div class="kpi-label">Quotation Value <span class="mini-icon cyan">₹</span></div><div class="kpi-value" id="quoteValue">₹0</div><div class="kpi-foot">Total quote value</div></article>
+        <article class="card kpi"><div class="kpi-label">Accepted Quotations <span class="mini-icon green">✓</span></div><div class="kpi-value" id="acceptedQuotes">0</div><div class="kpi-foot">Accepted by customers</div></article>
+        <article class="card kpi"><div class="kpi-label">Quote-to-Deal Rate <span class="mini-icon purple">%</span></div><div class="kpi-value" id="quoteConversion">0%</div><div class="kpi-foot">Quotations linked to deals / all quotations</div></article>
+      </div>
+      <div class="grid-two">
+        <article class="card"><div class="card-heading"><div><h3>Quotation Value by Service</h3><p>Quoted amount grouped by category</p></div></div><div class="chart-wrap"><canvas id="quotationServiceChart"></canvas></div></article>
+        <article class="card"><div class="card-heading"><div><h3>Quotation Status</h3><p>Draft, sent, accepted and rejected</p></div></div><div class="chart-wrap medium"><canvas id="quotationStatusChart"></canvas></div></article>
+      </div>
+      <article class="card table-card">
+        <div class="card-heading"><div><h3>Quotation Details</h3><p>Click a quotation to inspect linked records</p></div><select id="quoteStatusFilter" aria-label="Filter quotations by status"><option value="all">All statuses</option><option>Draft</option><option>Sent</option><option>Accepted</option><option>Rejected</option></select></div>
+        <div class="table-scroll"><table><thead><tr><th>Quote ID</th><th>Lead</th><th>Service</th><th>Quoted Amount</th><th>Status</th><th>Date</th><th>Linked Deal</th></tr></thead><tbody id="quotationTable"></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="revenue">
+      <div class="section-heading"><div><h2>Deals & Revenue</h2><p>Deal pipeline, collections and outstanding balances</p></div><span class="section-icon green">↗</span></div>
+      <div class="kpi-grid four">
+        <article class="card kpi"><div class="kpi-label">Deals Created <span class="mini-icon blue">↗</span></div><div class="kpi-value" id="totalDeals">0</div><div class="kpi-foot" id="dealsChange">In selected period</div></article>
+        <article class="card kpi"><div class="kpi-label">Total Deal Value <span class="mini-icon purple">₹</span></div><div class="kpi-value" id="totalDealValue">₹0</div><div class="kpi-foot">Value of deals</div></article>
+        <article class="card kpi"><div class="kpi-label">Collected Revenue <span class="mini-icon green">✓</span></div><div class="kpi-value" id="collectedRevenue">₹0</div><div class="kpi-foot">Payments received for these deals</div></article>
+        <article class="card kpi"><div class="kpi-label">Outstanding Revenue <span class="mini-icon red">!</span></div><div class="kpi-value" id="outstandingRevenue">₹0</div><div class="kpi-foot">Deal value less collections</div></article>
+      </div>
+      <div class="grid-two">
+        <article class="card"><div class="card-heading"><div><h3>Revenue by Service</h3><p>Deal value grouped by service</p></div></div><div class="chart-wrap"><canvas id="revenueServiceChart"></canvas></div></article>
+        <article class="card"><div class="card-heading"><div><h3>Priority Breakdown</h3><p>Deals by priority level</p></div></div><div class="chart-wrap medium"><canvas id="dealPriorityChart"></canvas></div></article>
+      </div>
+      <div class="grid-two">
+        <article class="card"><div class="card-heading"><div><h3>Daily Revenue Trend</h3><p>Deal value and payment collections by date</p></div></div><div class="chart-wrap"><canvas id="dailyRevenueChart"></canvas></div></article>
+        <article class="card"><div class="card-heading"><div><h3>Deal Progress</h3><p>In progress, completed and on hold</p></div></div><div class="chart-wrap medium"><canvas id="dealProgressChart"></canvas></div></article>
+      </div>
+      <article class="card table-card"><div class="card-heading"><div><h3>Deal Details</h3><p>Click a deal to view orders and payments</p></div><select id="dealStatusFilter" aria-label="Filter deals by status"><option value="all">All statuses</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select></div>
+        <div class="table-scroll"><table><thead><tr><th>Deal ID</th><th>Lead</th><th>Service</th><th>Priority</th><th>Status</th><th>Deal Value</th><th>Collected</th><th>Outstanding</th><th>Date</th></tr></thead><tbody id="dealTable"></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="orders">
+      <div class="section-heading"><div><h2>Orders & Payments</h2><p>Order delivery progress and payment collection history</p></div><span class="section-icon orange">▣</span></div>
+      <div class="kpi-grid four">
+        <article class="card kpi"><div class="kpi-label">Orders <span class="mini-icon blue">▣</span></div><div class="kpi-value" id="totalOrders">0</div><div class="kpi-foot">Orders in selected period</div></article>
+        <article class="card kpi"><div class="kpi-label">Completed Orders <span class="mini-icon green">✓</span></div><div class="kpi-value" id="completedOrders">0</div><div class="kpi-foot">Successfully completed</div></article>
+        <article class="card kpi"><div class="kpi-label">Payments Collected <span class="mini-icon cyan">₹</span></div><div class="kpi-value" id="paymentsCollected">₹0</div><div class="kpi-foot">Payments recorded in period</div></article>
+        <article class="card kpi"><div class="kpi-label">Collection Rate <span class="mini-icon purple">%</span></div><div class="kpi-value" id="collectionRate">0%</div><div class="kpi-foot">Collected / deal value in period</div></article>
+      </div>
+      <div class="grid-two">
+        <article class="card"><div class="card-heading"><div><h3>Order Status</h3><p>Orders grouped by current stage</p></div></div><div class="chart-wrap medium"><canvas id="orderStatusChart"></canvas></div></article>
+        <article class="card"><div class="card-heading"><div><h3>Payment Collection Trend</h3><p>Payments recorded by payment date</p></div></div><div class="chart-wrap"><canvas id="paymentTrendChart"></canvas></div></article>
+      </div>
+      <article class="card table-card"><div class="card-heading"><div><h3>Orders</h3><p>Click an order to inspect its payment history</p></div><select id="orderStatusFilter" aria-label="Filter orders by status"><option value="all">All statuses</option><option>Pending</option><option>In Progress</option><option>Completed</option><option>On Hold</option></select></div>
+        <div class="table-scroll"><table><thead><tr><th>Order ID</th><th>Deal</th><th>Lead</th><th>Service</th><th>Status</th><th>Order Value</th><th>Date</th><th>Payments</th></tr></thead><tbody id="orderTable"></tbody></table></div>
+      </article>
+      <article class="card table-card"><div class="card-heading"><div><h3>Payment History</h3><p>Payment records within the selected date range</p></div></div>
+        <div class="table-scroll"><table><thead><tr><th>Payment ID</th><th>Order</th><th>Deal</th><th>Lead</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="paymentTable"></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="activity">
+      <div class="section-heading"><div><h2>Recent CRM Activity</h2><p>Sample activity log generated from the demo records</p></div><span class="section-icon blue">◷</span></div>
+      <article class="card table-card"><div class="table-scroll"><table><thead><tr><th>Date</th><th>Record</th><th>Activity</th><th>Details</th></tr></thead><tbody id="activityTable"></tbody></table></div></article>
+    </section>
+
+    <footer class="footer"><span>Business Analytics Dashboard</span><span>Demo data · No backend connected</span></footer>
+  </main>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <div class="dialog-head"><div><p class="eyebrow">RECORD DETAILS</p><h2 id="dialogTitle">Details</h2></div><button class="icon-button" id="closeDialog" aria-label="Close details">✕</button></div>
+    <div id="dialogBody" class="dialog-body"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="enhancements.js"></script>
+</body>
+</html>
